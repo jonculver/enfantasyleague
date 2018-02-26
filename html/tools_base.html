@@ -1,0 +1,53 @@
+{% extends "html/base.html" %}
+{% block head %}
+    {{ super() }}
+    <script type="text/javascript" src="./javascript/tools.js"></script>
+{% endblock %}
+{% if not admin %}
+{% block defaulttab %}
+    This page is for administrators only
+{% endblock %}
+{% else %}
+{% block tabs %}
+{% for tab in tabs.values() %}
+    <div id="{{tab.html_id}}" class="fftab">
+        <table class="layouttable">
+            <tr><td><input type="button" id="{{tab.tool_id}}" 
+                           class="toolbutton" value="{{tab.name}}"></td> 
+            {% if tab.tool_id == "update" %}
+                {% block update %}
+                {% endblock %}
+            {% elif tab.tool_id == "weeklyUpdate" %}
+                {% block weeklyUpdate %}
+                {% endblock %}
+            {% elif tab.tool_id == "addPlayer" %}
+                {% block addPlayer %}
+                {% endblock %}
+            {% elif tab.tool_id == "transfer" %}
+                {% block transfer %}
+                {% endblock %}
+            {% elif tab.tool_id == "newSeason" %}
+                {% block newSeason %}
+                {% endblock %}
+            {% elif tab.tool_id == "clearAll" %}
+                {% block clearAll %}
+                {% endblock %}
+            {% elif tab.tool_id == "refreshCache" %}
+                {% block refreshCache %}
+                {% endblock %}
+            {% elif tab.tool_id == "toggleUpdates" %}
+                {% block toggleUpdates %}
+                {% endblock %}
+            {% elif tab.tool_id == "clearScores" %}
+                {% block clearScores %}
+                {% endblock %}
+            {% endif %}
+            </tr>
+            <tr><td colspan=2><pre><div id="mes-{{tab.tool_id}}" class="hidden"></div></pre></td></tr>
+            <tr><td colspan=2><pre><div id="log-{{tab.tool_id}}" class="hidden"></td></pre></tr>
+        </table>
+    </div>
+{% endfor %}
+{% endblock %}
+{% endif %}          
+

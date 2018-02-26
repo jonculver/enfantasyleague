@@ -1,0 +1,78 @@
+{% extends "html/base.html" %}
+{% block head %}
+    {{ super() }}
+    <script type="text/javascript" src="./javascript/jquery.tablesorter.js"></script>
+    <script type="text/javascript">
+
+$(document).ready(function() { 
+    // call the tablesorter plugin 
+    $("table").tablesorter({ 
+        // sort on the second column, order desc 
+        sortList: [[1,1]],
+        headers: {
+            // disable all sorting once the initial sort has been done
+            0: {sorter: false},
+            1: {sorter: false} 
+        }
+        
+    }); 
+}); 
+
+    </script>
+{% endblock %}
+
+{% block tabs %}
+<div id="tabs-weekly" class="fftab">
+    <h2 align=center>Top Scorers This Week</h2>
+    <table class="layouttablenowrap">
+        <tr>
+        {% for team in league %}
+        <td><table class="gridtable tablesorter">
+            <thead>
+            <tr><th colspan=2>{{ team.manager }}</th></tr>
+            <tr><th colspan=2>{{ team.total_score}} {{ team.week_score_string() }}</th></tr>
+            {# The following hidden row allows sorting by the second column #}
+            <tr style="display: none;"><th></th><th></th></tr>
+            </thead>
+            <tbody>
+            {% for player in team %}
+            <tr class="{% if player.in_team %}{{ player.pos }}
+                       {% else %}sub{% endif %}">
+                <td>{{ player.name }}</td>
+                <td>{% if player.in_team %}{{ player.week_score }}
+                    {% else %}{{ player.week_missed }}{% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        {% endfor %}
+    </table>
+</div>
+
+<div id="tabs-overall" class="fftab">
+    <h2 align=center>Top Scorers Overall</h2>
+    <table class="layouttablenowrap">
+        <tr>
+        {% for team in league %}
+        <td><table class="gridtable tablesorter">
+            <thead>
+            <tr><th colspan=2>{{ team.manager }}</th></tr>
+            <tr><th colspan=2>{{ team.total_score }}</th></tr>
+            {# The following hidden row allows sorting by the second column #}
+            <tr style="display: none;"><th></th><th></th></tr>
+            </thead>
+            <tbody>
+            {% for player in team.allplayers() %}
+            <tr class="{{ player.pos }}">
+                <td>{{ player.name }}</td>
+                <td>{{ player.total_score }}</td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        {% endfor %}
+    </table>
+
+</div>
+{% endblock %}

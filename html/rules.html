@@ -1,0 +1,317 @@
+{% extends "html/base.html" %}
+{% block tabs %}
+<div id="tabs-basics">
+    <table class="layouttable" cellpadding=10>
+        <tr>
+            <td>
+            Fantasy Football is a game of luck and skill in which you pick a 
+            team of players from the English Premiership and score points 
+            according to the performance of those players in the matches each 
+            week. Knowledge of football is helpful but by no means necessary.
+            </td>
+        </tr><tr>
+            <td>
+            In the ordinary newspaper version you can choose any player
+            from a set price list and the same player can appear in multiple 
+            teams. Our version works somewhat differently. Twice a season we 
+            hold an auction during which players are sold to the highest 
+            bidder. 
+            </td>
+        </tr><tr>
+            <td>This means that firstly each player can only appear in
+            one person's team and secondly players have no set price, with 
+            some going for massively inflated prices and others picked up
+            relatively cheaply. It means that tactics come into play during the 
+            auction along with some measure of strategy in terms of how much
+            money you save for the second half of the season.
+            </td>
+        </tr><tr>
+            <td>
+            Once the season is up and running the manager's job is to select
+            a team of 11 out of the squad of 17. You can either attempt to 
+            finesse by switching players in and out each week according to the
+            opposition they face or just leave your team alone and only switch
+            it around if one of them is injured.
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div id="tabs-squad">
+    <table class="layouttable" cellpadding=10>
+        <tr>
+            <td>Your team must consist of 11 players in the following
+                positions: 
+            </td>
+        </tr><tr>
+            <td>
+            <table class="gridtable">
+                <tr><th colspan=2>Position</th><th>#</th></tr>
+                <tr><td>Goalkeeper</td><td class="GK">GK</td><td>1</td></tr>
+                <tr><td>Fullbacks</td><td class="FB">FB</td><td>2</td></tr>
+                <tr><td>Centrebacks</td><td class="CB">CB</td><td>2-3</td></tr>
+                <tr><td>Midfielders</td><td class="M">M</td><td>3-5</td></tr>
+                <tr><td>Strikers</td><td class="S">S</td><td>1-2</td></tr>
+            </table>
+        </tr><tr>
+            <td>In addition to the 11 players in the team your squad also 
+            contains 6 substitutes who can be from any position. You are free
+            to rotate these in and out of the team during the season or leave
+            them to warm the bench as you see fit.
+        </tr><tr>
+            <td>You cannot have more than two players from a particular club 
+                in your squad. The club a player belongs to is determined by 
+                the club he is playing for when purchased (i.e. if a player 
+                moves to a club you already have 2 from you can still keep 
+                him).
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div id="tabs-points">
+    <table class="layouttable" cellpadding=10>
+        <tr>
+            <td>Points are scored in all Premiership matches as follows:</td>
+        </tr>
+
+        <tr>
+            <td>
+            <table class="gridtable">
+                <tr><th colspan=2>All players</th></tr>
+                <tr><td>Goal</td><td>3 points</td></tr>
+                <tr><td>Assist</td><td>2 points</td></tr>
+                <tr><th colspan=2>Goalkeeper and Defenders</th></tr>
+                <tr><td>Appearance (45+ mins)</td><td>1 point</td></tr>
+                <tr><td>Clean Sheet (75+ mins)</td><td>2 points</td></tr>
+                <tr><td>Goal conceded</td><td>-1 point</td></tr>
+            </table>
+            </td>
+        </tr>
+
+        <tr>
+            <td>Only members of your first 11 score points. Substitutions 
+                between squad members can be made at any time during the week
+                but do not take effect until Saturday morning. Thus any 
+                players you substitute in during the week will start scoring 
+                points in matches played on the following Saturday.
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div id="tabs-auction">
+    <table class="layouttable" cellpadding=10>
+        <tr>
+            <td>
+            Initial selection of players is by auction (usually in the pub). 
+            You are given an initial budget of 100 million from which to buy 
+            your players. 
+            </td>
+        </tr><tr>
+            <td>
+            During the mid-season transfer window in January a second auction 
+            is held and new teams are picked for the second half of the season 
+            (it doesn't correspond to actual football but auctions are fun and 
+            it's an excuse for another evening in the pub :)). In the second 
+            auction you get an injection of 50 million plus any money left 
+            over from the start of the season up to a maximum of 100 million.
+            </td>
+        </tr><tr>
+            <td>
+            During the auction managers take it in turns to "raise" a player, 
+            stating an initial bid for the player. If no-one else bids for the 
+            player then the manager who raised them gets the player at the 
+            price offered. If other managers are interested in the player then 
+            bidding continues until the final, highest bid is received, with 
+            the player going to the manager who made that bid.
+            </td>
+        </tr><tr>
+            <td>
+            The minimum price for a player in the auction is 0.1M. Minimum 
+            increments when bidding are as follows. This helps to keep the 
+            auction moving by preventing repeated small increments
+            </td>
+        </tr><tr>
+            <td>
+            <table class="gridtable">
+                <tr><th>Current price</th><th>Increment</th></tr>
+                <tr><td>0.1M - 0.9M</td><td>0.1</td></tr>
+                <tr><td>1M - 4.5M</td><td>0.5</td></tr>
+                <tr><td>5M+</td><td>1</td></tr>
+            </table>
+            </td>
+        </tr><tr>
+            <td>
+            Those who have spent all their money without completing their 
+            quota of 17 players can draft in players on free transfers at the 
+            end of the auction in round-robin fashion, starting with the 
+            person who ran out of money first.
+            </td>
+        </tr><tr>
+            <td>
+            You <i>can</i> bid for players who do not currently play in the 
+            premiership in the hope that they will be bought by a premiership 
+            team. Players bought in this way are assigned a sensible position 
+            for the purposes of the auction but until they sign for a 
+            premiership team they can only be a substitute. You cannot put 
+            these players in your team and you must be able to field a valid 
+            formation without them. You cannot play a non-registered player 
+            as a goalkeeper or in defence to get a certain 0 pts.
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div id="tabs-sealed">
+    <table class="layouttable" cellpadding=10>
+        <tr>
+            <td>
+            To avoid the auction from going on for too long only a first 11 
+            plus maybe 1 sub are bid for on the night, depending on the number 
+            of participants. Remaining substitutes are picked up via sealed 
+            bids the day after each auction.
+            </td>
+        </tr><tr>
+            <td>
+            Each manager submits a sealed list of bids for players stating how 
+            much he is willing to pay for the player. If the manager has funds
+            the minimum bid is 0.1M. Bids from managers with no money will be
+            processed in round-robin fashion at the end of the sealed auction
+            and they will pick up the players for free.
+            </td>
+        </tr><tr>
+            <td>
+            Mails must be in the following format, specifying the maximum 
+            number of players to bid for in each position, the players you w
+            ant in order and the price to bid for each of them. If you don't 
+            want to think too hard then you can just ask to be assigned the 
+            highest scoring available player in that position (i.e. the player 
+            who scored most last season or so far this season).
+            </td>
+        </tr><tr>
+            <td><pre>
+  Goalkeepers: (max 1)
+    First Choice    bid
+    Second Choice   bid
+
+  Fullbacks: (max 2)
+    A Cole     CHE  0.5
+    G Neville  MU   0.4
+    Fill remaining spots with the highest scoring, non-injured, eligible player
+  
+  Centrebacks: (max 1)
+    First choice    bid
+   
+  Midfielders: (max 0)
+
+  Strikers: (max 0)
+
+  Unregistered: (max 1)
+    L Messi     12.1M
+            </pre></td>
+        </tr><tr>
+            <td>
+            Once all the lists of bids have been received they will be 
+            processed as follows. In order of league position starting from 
+            the bottom, the first player on the first list will be sold to the 
+            manager who bid the most for that player. Then the first 
+            (unhandled) player from the second manager's list is dealt with, 
+            and so on until everyone has got their required number of players 
+            in that position or no more players are left.
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div id="tabs-transfers">
+    <table class="layouttable" cellpadding=10>
+        <tr>
+            <td>
+            Once the subs auction is over and everyone has a complete team it 
+            is possible to trade players for either players or (fantasy) cash 
+            or both from other managers. The league chairman must approve the 
+            deal to ensure no underhand behaviour or dodgy dealings. 
+            </td>
+        </tr><tr>
+            <td>
+            Multiple trades may be made but at the end of it everyone 
+            involved must end up with a full compliment of players and comply
+            with the 2-players-per-club rule.
+            </td>
+        </tr><tr>
+            <td>
+            In practice it is rare to find a situation where a mutually 
+            beneficial trade can be made, so in many seasons no transfers will
+            be made. However the option is there if needed.
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div id="tabs-faq">
+    <table class="layouttable" cellpadding=10>
+        <tr><th>What players should I buy or avoid?</th><tr>
+        <tr><td>How good a player is in real life does not necessarily 
+            correspond to their ability in fantasy football. Some rules of 
+            thumb:
+            <ol>
+                <li>Defensive midfielders suck. They get few goals and assists
+                    and they don't get points for clean sheets either.</li>
+                <li>Good defenders from bad teams are bad buys. Defenders score
+                    points when the team doesn't concede. Therefore you want to
+                    look for players from clubs that keep things tight at the
+                    back which usually means the top clubs.</li>
+                <li>Unless a player has been injured or moved clubs past 
+                    performance is a very good indicator. This data is 
+                    available before and during the auction</li>
+            </ol>
+        </td></tr>
+        <tr><th>What tactics should I employ in the auction?</th></tr>
+        <tr><td>In general any pre-planned strategies tend to go out of the
+            window quickly once the auction gets going but there are some 
+            tactics that are worth bearing in mind:
+            <ol>
+                <li>Towards the end of the auction many people will be 
+                    inelligable to buy certain players either because they 
+                    already have 2 from that club or because they are full in
+                    that position or cannot afford them. Not raising the 
+                    player you want in the hope of picking them up cheaply at 
+                    the end is a common occurrence. Conversely people often
+                    raise the best players early to prevent someone getting a 
+                    bargain. 
+                </li>
+                <li>
+                    Don't listen when Simon tells you a player is injured or
+                    when John says they are going to move to Spurs.
+                </li>
+            </ol>
+        </td></tr>
+        <tr><th>How much do players sell for?</th></tr>
+        <tr><td>This varies a lot depending on the stage of the auction and the
+                groupthink of the people involved. The top strikers 
+                and midfielders often go for 15-20M or sometimes even more. In 
+                January 2014 after scoring more than double the points of 
+                everyone else in the first half of the season Luis Suarez was
+                sold for 46M.
+        </td></tr>
+        <tr><td>Most decent players go fall into the 5-10M range while those
+                people don't rate may go for 2 or less. Towards the end 
+                of the auction players will be raised that no one can or wants 
+                to bid for and they will be picked up for the minimum 0.1 
+                regardless of how good they are. 
+        </td></tr>
+        <tr><td>For sealed bids the remaining players are generally pretty  
+                medeocre and most go for less than 1M, often the minimum 0.1
+        </td></tr>
+        <tr><th>Can I fire players I bought in the auction but do not want?
+        </tr></th>
+        <tr><td>No. Any players bought in the auction must be kept. It is
+                possible to transfer them in exchange for a player from someone
+                else's team if you can find someone willing to take them.
+        </td></tr>
+    </table>
+
+</div>
+
+{% endblock %}

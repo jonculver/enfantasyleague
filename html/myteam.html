@@ -1,0 +1,88 @@
+{% extends "html/base.html" %}
+{% block head %}
+    {{ super() }}
+    <script type="text/javascript" src="./javascript/myteam.js"></script>
+{% endblock %}
+{% block tabs %}
+<div id="tabs-subs" class="fftab">
+  {% if no_user %}
+    Please log in to view or create your team
+  {% elif team == None and not can_create %}
+    Unfortunately it is too late to enter this league
+  {% elif not team %}
+    <p>You don't have a team in this league. Enter your name here to create 
+       one
+    <form action="/addteam.html" method="post">
+      <input type=text name="manager" size=15 value="Manager Name">
+      <input type="submit" value="Create Team">
+    </form>
+  {% else %}
+    <table class="layouttable">
+        <tr>
+            <td align="center"><h2><div id="teamname">{{ team.name }}</div></h2></td>
+        </tr>
+    </table>
+    <form id="subform" action="/sub.html" method="post">
+      <input type="hidden" id="manager" name="manager" value="{{ team.safemgr }}">
+      <input type="hidden" id="sn1" name="sn1" value="-1">
+      <input type="hidden" id="sn2" name="sn2" value="-1">
+      <table class="gridtable">
+        <tr>
+            <th width=30>Pos</th>
+            <th width=250>Name</th>
+            <th width=40>Club</th>
+            <th width=40>Week</th>
+            <th width=40>Total</th>
+            <th width=40>Missed</th>
+            <th width=40>Status</th>
+            <th width=40>Sub</th>
+        </tr>
+        {% for player in team.players %}
+        {% if player == team.players[11] %}
+            <tr><th colspan=8>Substitutes</th></td></tr>
+        {% endif %}
+        <tr title="{{ player.fixtures }}" 
+            {% if not player.in_team %} 
+                class="row sub" 
+            {% else %}
+                class="row"
+            {% endif %} 
+            id={{player.squad_num}}>
+            <td class="{{ player.pos }}"><div id="pos{{ player.squad_num }}">{{ player.pos }}</div></td>
+            <td><a href="./player.html?player_key={{player.player_key}}">{{ player.name }}</a></td>
+            <td  title="{{ player.fixtures }}">{{ player.club }}</td>
+            <td>{{ player.week_score }}</td>
+            <td>{{ player.total_score }}</td>
+            <td>{{ player.total_missed }}</td>
+            <td><img src="{{ player.status_image() }}" 
+                       title="{{ player.reason }}"></img></td>
+            <td><div align="center" class="hidden" id="first_{{ player.squad_num }}">
+                {% if player.squad_num < 11 %} 
+                OUT
+                {% else %}
+                IN
+                {% endif %}
+                </div>
+                <div class="hidden" id="second_{{ player.squad_num}}">
+                    <input type="button" class="submit" value="Sub">
+                </div>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>                                        
+    </form>
+  {% endif %}
+</div>
+
+<div id="tabs-changename" class="fftab">
+{% if team != None %}
+    <table align="center">
+        <tr>
+            <td><input type="text" size=50 value="{{team.name}}" id="inputname"</td>
+            <td><button id="updatename">Update</button></td>
+        </tr>
+    </table>
+{% endif %}
+</div>
+
+{% endblock %}

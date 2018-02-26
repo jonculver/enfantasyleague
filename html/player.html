@@ -1,0 +1,62 @@
+{% extends "html/base.html" %}
+
+{% block tabs %}
+<div id="tabs-details">
+    <table width=400 align="center" border=0>
+    <tr><td><table class="gridtable">
+            <tr><th colspan=2>
+                <a href={{player.url}}>
+                {{player.name}}</a></th></tr>
+            <tr><th>Pos</th><td>{{player.pos}}</td></tr>
+            <tr><th>Club</th><td>{{player.club}}</td></tr>
+            <tr><th>This Season</th><td>{{player.total_score}}</td></tr>
+            <tr><th>Last Season</th><td>{{player.last_season}}</td></tr>
+            <tr><th>Status</th><td><img src="{{ player.status_image() }}" 
+                       title="{{ player.reason }}"></img></td>
+        </table>
+        </td>
+    </tr>
+    <tr>
+        <table class="gridtable">
+            <tr><th colspan=4>Week</th>
+                {% for i in range(current_week + 1) %}
+                <th>{{ i }}</th>
+                {% endfor %}
+            </tr>
+            <tr><th colspan=4>Week score</th>
+                {% for i in range(current_week + 1) %}
+                <td>{{player.db_entry.get_week_score(i)}}</td>
+                {% endfor %}
+            <tr><th colspan=4>Total score</th>
+                {% for i in range(current_week + 1) %}
+                <td>{{player.db_entry.get_total_score(i)}}</td>
+                {% endfor %}
+            </tr>
+            <tr><td colspan={{current_week+4}}></td></tr>
+            <tr><th>Manager</th>
+                <th>Price</th>
+                <th>Scored</th>
+                <th>Missed</th>
+                <th colspan={{current_week+1}}</th>
+            </tr>
+            {% for tp in player.teamplayers %}
+            <tr><td><a href="./teams.html?manager={{tp.safemgr}}">{{tp.manager}}</a></td>
+                <td>{{tp.price}}</td>
+                <td>{{tp.total_score}}</td>
+                <td>{{tp.total_missed}}</td>
+                {% for i in range(current_week + 1) %}
+                {% if tp.db.get_current_squad_num(i) > 10 %}
+                    <td class="lightred">{{tp.db.get_week_missed(i)}}</td>
+                {% elif tp.db.get_current_squad_num(i) >= 0 %}
+                    <td class="lightgreen">{{tp.db.get_week_points(i)}}</td>
+                {% else %}
+                    <td class="highlight_free"></td>
+                {% endif %}
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </table>
+    </tr>
+</table>
+</div>
+{% endblock %}

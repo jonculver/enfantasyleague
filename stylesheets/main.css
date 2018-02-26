@@ -1,0 +1,152 @@
+body {
+  font-family: Verdana, Helvetica, sans-serif !important;
+  font-weight: normal;
+}
+
+pre {
+  font-family: "Courier New" Courier monospace;
+  background-color: lightgrey;
+}
+
+#header {
+  text-align: center ;
+  height: 20px;
+  background-color: white;
+}
+
+#leftmenu {
+  float: left ; 
+  width: 200px ;
+  height: 600px ;
+  background-color: white;
+}
+
+#content {
+  margin-left:200px ;
+  min-height: 600px;
+  padding: 7px;
+}
+
+#footer {
+  text-align: right;
+  clear: both ;
+}
+
+#tabs {
+  border: 0px;
+  padding: 0px;
+}
+
+.fftab, .ui-tabs-panel {
+  background-color: #CCFF99 !important;
+  min-height: 600px;
+  font-family: Verdana, Helvetica, sans-serif !important;
+  font-weight: normal;
+  font-size: medium;
+}
+
+/* Change tab color
+.ui-tabs .ui-tabs-nav a
+{
+   background-color: #231f20;
+}
+*/
+
+.sub {
+  background-color: lightgray;
+}
+
+.highlight_club {
+  background-color: orange;
+}
+
+.highlight_free {
+  background-color: green;
+}
+
+.highlight_last {
+  background-color: yellow;
+}
+
+.hover {
+  background-color: red;
+}
+
+.leftalign {
+  text-align: left !important;
+}
+
+.lightgreen {
+  background-color: lightgreen;
+}
+
+.lightred {
+  background-color: pink;
+}
+
+table.gridtable {
+  background-color: white;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+table.gridtable, table.gridtable td, table.gridtable th {
+  border: 1px solid black;
+  border-collapse:collapse;
+  padding: 2px; 
+  text-align: center;
+}
+
+table.gridtable th {
+  background-color: green;
+  padding-right: 10px;
+  color: white;
+}
+
+table.layouttable {
+  margin-left: auto;
+  margin-right: auto;
+  width: 800px ;
+}
+
+table.layouttablenowrap {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+table.layouttablenowrap th, table.layouttablenowrap td {
+  vertical-align: top;
+  white-space: nowrap;
+}
+
+th.headerSortUp { 
+    background-image: url(../images/sort_desc.png);
+    background-repeat: no-repeat; 
+    background-position: center right; 
+} 
+
+th.headerSortDown { 
+    background-image: url(../images/sort_asc.png);
+    background-repeat: no-repeat; 
+    background-position: center right; 
+}
+
+.GK {
+  background-color: LightCoral;
+}
+
+.FB {
+  background-color: Khaki;
+}
+
+.CB {
+  background-color: lightgreen;
+}
+
+.M {
+  background-color: MediumTurquoise;
+}
+
+.S {
+  background-color: CornflowerBlue;
+}

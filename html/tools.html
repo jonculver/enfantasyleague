@@ -1,0 +1,111 @@
+{% extends "html/tools_base.html" %}
+
+{% block update %}
+    <td>Update the scores for all players in the player list along
+        with all teams impacted by any changes</td>
+{% endblock %}
+
+{% block weeklyUpdate %}
+    <td>Mark all substitutions as valid and perform other admin. This should
+        be done at the start of the week (i.e. Saturday morning). Rerunning 
+        it within the same week will have no further effect</td>
+{% endblock %}
+
+{% block addPlayer %}
+    <td>Add a new player to the player list. They will have NON
+        as their team and will need to be transferred should the
+        real player join the league later.<td>
+    </tr><tr>
+        <td>Position</td>
+        <td><select name="pos" id="pos">
+              <option></option>
+              {% for pos in pos_list %}
+                  <option value="{{ pos }}">{{ pos }}</option>
+              {% endfor %}
+            </select>
+         </td>
+     </tr><tr>
+         <td>Name</td>
+         <td><input type=text id="playername" size=25></input></td>
+{% endblock %}
+
+{% block transfer %}
+    <td>Transfer a player into the team to replace an existing player. If the
+        player being transferred out has a 'NON' club then the new player will
+        inherit their price. Otherwise the given price (which may be negative)
+        is subtracted from the team's funds</td></tr>
+    <tr><td>Manager</td>
+        <td><select name="manager" id="manager">
+            <option></option>
+            {% for team in league %}
+                <option name="{{team.safemgr}}">{{team.manager}}</option>
+            {% endfor %}
+            </select>
+        </td>
+    </tr><tr>
+        <td>Player Out</td><td><select id="out_player"></select></td>
+    </tr><tr>    
+        <td>Pos In</td>
+        <td><select id="in_pos">
+            <option></option>
+            {% for pos in pos_list %}
+                <option value="{{ pos }}">{{ pos }}</option>
+            {% endfor %}
+            </select>
+        </td>
+    </tr><tr>
+        <td>Club In</td>
+        <td><select id="in_club">
+            <option></option>
+            {% for club in club_list %}
+                <option value="{{ club }}">{{ club }}</option>
+            {% endfor %}
+            </select>
+        </td>
+    </tr><tr>
+        <td>Player In</td><td><select id="in_player"></select></td>
+    </tr><tr>
+        <td>Price</td>
+        <td><input type="text" id="price" maxlength=5 size=1></td>
+    </tr>
+{% endblock %}
+
+{% block newSeason %}
+    <td>Initialise a new season</td>
+    </tr><tr id="newSeasonExtra">
+        <td></td><td>
+            Start: <input type="text" id="seasonStart" 
+                          value="dd/mm/yy" size=8>
+            End: <input type="text" id="seasonEnd" 
+                        value="dd/mm/yy" size=8>
+        </td>
+{% endblock %}
+
+{% block clearAll %}
+    <td>Empty everyone's teams and increase their funds ready for 
+        the next auction</td>
+
+    <div id="dialog-confirm" title="Clear Teams" class="hidden">
+	<p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>
+        This operation cannot be undone. Are you sure?
+    </p>
+    </div>
+{% endblock %}
+
+{% block refreshCache %}
+    <td>Refresh cached pages</td>
+{% endblock %}
+
+{% block toggleUpdates %}
+    <td>Toggle Periodic Updates</td>
+{% endblock %}
+
+{% block clearScores %}
+    <td>Clear all points scored by players in people's teams and instead 
+        mark them as 'missed'. Then reset all teams scores to 0. This is used
+        if the auction takes place after the season has started.</td>
+{% endblock %}
+
+
+
+

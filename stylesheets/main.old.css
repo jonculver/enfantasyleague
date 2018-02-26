@@ -1,0 +1,78 @@
+body {
+  font-family: Verdana, Helvetica, sans-serif;
+  /*background-color: #CCFF99;*/
+}
+
+/*
+#body {
+  width: 1200px;
+  margin: 0 auto;
+}
+*/
+
+#header {
+  text-align: center ;
+  height: 100px;
+  background-color: white;
+}
+
+#leftmenu {
+  float: left ; 
+  width: 200px ;
+  background-color: white;
+}
+
+#content {
+  float: right;
+  width: 1000px ;
+  height: 600px;
+}
+
+#footer {
+  text-align: right;
+  clear: both ;
+}
+
+.sub {
+  background-color: lightgray;
+}
+
+.highlight_club {
+  background-color: orange;
+}
+
+.highlight_free {
+  background-color: green;
+}
+
+.highlight_last {
+  background-color: yellow;
+}
+
+.hover {
+  background-color: red;
+}
+
+.pos {
+  text-align: center;
+}
+
+.GK {
+  background-color: red;
+}
+
+.FB {
+  background-color: yellow;
+}
+
+.CB {
+  background-color: green;
+}
+
+.M {
+  background-color: cyan;
+}
+
+.S {
+  background-color: blue;
+}

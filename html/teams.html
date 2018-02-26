@@ -1,0 +1,56 @@
+{% extends "html/base.html" %}
+{% block tabs %}
+<div id="tabs-teamsheet" class="fftab">
+    <h2 align=center>{{team.manager}} - {{team.name}}</h2>
+
+    <table class="gridtable">
+        <tr><th>Pos</th>
+            <th>Name</th>
+            <th>Club</th>
+            <th>Status</th>
+            <th>Price</th>
+            <th>Week</th>
+            <th>Total</th>
+            <th>Missed</th>
+        </tr>
+        {% for player in team.players %}
+            {% if player == team.players[11] %}
+            <tr><th colspan=8>Substitutes</th></td></tr>
+            {% endif %}
+            <tr {% if not player.in_team %} class="sub" {% endif %}>
+                <td class="{{player.pos}}">{{ player.pos }}</td>
+                <td><a href="./player.html?player_key={{player.player_key}}">{{ player.name }}</a></td>
+                <td>{{ player.club }}</td>
+                <td><img src="{{ player.status_image() }}" 
+                       title="{{ player.reason }}"></img></td>
+                <td>{{ player.price }}M</td>
+                <td>{{ player.week_score }}</td>
+                <td>{{ player.total_score }}</td>
+                <td>{{ player.total_missed }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+</div>
+
+<div id="tabs-explayers" class="fftab">
+    <table class="gridtable">
+        <tr><th>Pos</th>
+            <th>Name</th>
+            <th>Club</th>
+            <th>Price</th>
+            <th>Total</th>
+            <th>Missed</th>
+        </tr>
+        {% for player in team.explayers %}
+            <tr {% if not player.in_team %} class="sub" {% endif %}>
+                <td class="{{player.pos}}">{{ player.pos }}</td>
+                <td><a href="./player.html?player_key={{player.player_key}}">{{ player.name }}</a></td>
+                <td>{{ player.club }}</td>
+                <td>{{ player.price }}M</td>
+                <td>{{ player.total_score }}</td>
+                <td>{{ player.total_missed }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}

@@ -1,0 +1,25 @@
+<table class="gridtable">
+  <tr><th></th>
+      <th>Goalkeepers</th>
+      <th>Fullbacks</th>
+      <th>Centrebacks</th>
+      <th>Midfielders</th>
+      <th>Strikers</th>
+  </tr>
+  {% for n in range(20) %}
+    <tr><th>{{n + 1}}</th>
+    {% for pos_list in unowned_lists.values() %}
+        <td class="leftalign">{% if current %}
+                {{pos_list[n].total_score}}
+            {% else %}
+                {{pos_list[n].last_season}}
+            {% endif %} 
+            {{pos_list[n].name}} 
+            <img src="{{ pos_list[n].status_image() }}" 
+                   title="{{ pos_list[n].reason }}"></img>
+            
+        </td>
+    {% endfor %}
+    </tr>
+  {% endfor %}
+</table>

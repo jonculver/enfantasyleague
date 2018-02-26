@@ -1,0 +1,78 @@
+{% extends "html/base.html" %}
+{% block head %}
+    {{ super() }}
+    <script type="text/javascript" src="./javascript/auction.js"></script>
+{% endblock %}
+{% block tabs %}
+<div id="tabs-auction">
+  <form>
+  <table border=0 align=center>
+      <tr>
+          <th>Position</th>
+          <th>Club</th>
+          <th>Player</th>
+          <th>Manager</th>
+          <th>Price</th>
+      </tr><tr>
+          <td><select name="pos" id="pos">
+              <option></option>
+              {% for pos in pos_list %}
+                  <option value="{{ pos }}">{{ pos }}</option>
+              {% endfor %}
+              </select>
+          </td>
+          <td><select name="club" id="club">
+              <option></option>
+              {% for club in club_list %}
+                  <option value="{{ club }}">{{ club }}</option>
+              {% endfor %}
+              </select>
+          </td>
+          <td><select name="player" id="player" style="width: 100px">
+              </select>
+          </td>
+          <td><select name="manager" id="manager" style="width: 100px">
+               </select>
+          </td>
+          <td><input type="text" name="price" maxlength=4 size=1>
+          {% if admin %}
+          <td><input type=button id="addPlayer" value="Add Player"></td>
+          {% endif %}
+          <td><input type=reset value="Clear"></td>
+          <td><input type="button" id="refresh" value="Refresh"></td>
+      </tr><tr>
+          <td align="center" colspan=8 id="message"></td>
+      </tr>
+  </table>                                   
+  </form>
+  <hr>
+  <div id="teams">
+  <table class="gridtable">
+      <tr>
+          <th></th>
+      {% for team in team_list %}
+          <th><div class="team" id="{{ team }}"></div></th>
+      {% endfor %}
+      </tr>
+      {% for i, p in possible_pos_list %}
+      <tr class="pos_row" id="pos_{{ i }}">
+          <th>{{ p }}</th>
+          {% for team in team_list %}
+          <td class="teamposcell"><div class="teampos" id="{{ team }}_pos_{{ i }}"></div></td>
+          {% endfor %}
+      </tr>
+      {% endfor %}
+  </table>
+  </div>
+  {% if admin %}
+  <hr>
+  <table align="center">
+      <tr><th>More Actions:</th>
+          <td><input type="button" id="ToggleSubs" value="Toggle Subs"></td>
+          <td><input type="button" id="RemoveOne" value="Remove Player"></td>
+      </tr>
+  </table>
+  {% endif %}
+</div>
+
+{% endblock %}

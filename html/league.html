@@ -1,0 +1,24 @@
+
+{% extends "html/base.html" %}
+{% block defaulttab %}
+    <h2 align="center">Season {{league.year}} Week {{league.current_week()}}</h2>
+    <table class="gridtable">
+      <tr bgcolor=lightgrey>
+          <th></th>
+          <th>Manager</th>
+          <th>Name</th>
+          <th>Week Points</th>
+          <th>Total Points</th>
+          <th>Funds</th>
+      </tr>
+      {% for team in league %}
+          <tr><th>{{ team.position }}</th>
+              <td><a href="./teams.html?manager={{ team.safemgr }}">{{ team.manager }}</a></td>
+              <td>{{ team.name }}</td>
+              <td>{{ team.week_score }}</td>
+              <td>{{ team.total_score }} </td>
+              <td>{{ team.funds|round(1) }}</td>
+          </tr>
+      {% endfor %}
+    </table>
+{% endblock %}

@@ -1,0 +1,38 @@
+<script type="text/javascript" src="./javascript/jquery.tablesorter.js"></script>
+<script type="text/javascript">
+
+$(document).ready(function() { 
+    // call the tablesorter plugin 
+    $("table").tablesorter({ 
+        // sort on the sixth column, order asc 
+        sortList: [[5,1]] 
+    }); 
+}); 
+
+</script>
+
+
+<table class="gridtable tablesorter">
+  <thead>
+  <tr><th>Name</th>
+      <th>Club</th>
+      <th>Pos</th>
+      <th>Status</th>
+      <th>Last Season</th>
+      <th>Current Score</th>
+      <th>Manager</th>
+  </tr>
+  </thead><tbody>
+  {% for player in players %}
+      <tr><td><a href="./player.html?player_key={{player.player_key}}">{{ player.name }}</a></td>
+          <td>{{ player.club }}</td>
+          <td class="{{player.pos}}">{{ player.pos }}</td>
+          <td><img src="{{ player.status_image() }}" 
+                   title="{{ player.reason }}"></img></td>
+          <td>{{ player.last_season }}</td>
+          <td>{{ player.total_score }}</td>
+          <td>{% if player.manager != None %}{{ player.manager }}{% endif %}</td>
+      </tr>
+  {% endfor %}
+  </tbody>
+</table>

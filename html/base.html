@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+{% autoescape true %}
+<html>
+  <head>
+    {% block head %}
+    <link type="text/css" rel="stylesheet" href="/stylesheets/main.css" />
+    <link rel="stylesheet" href="stylesheets/jquery-ui-1.10.3.custom.css" />
+    <script src="javascript/jquery-1.9.1.js"></script>
+    <script src="javascript/jquery-ui-1.10.3.custom.min.js"></script>
+    <script>
+      $(function() {
+        $( "#accordion" ).accordion({heightStyle: "content",
+                                     active: {{ menu_num }}
+                                    });
+      });
+      $(function() {
+		$( "#tabs" ).tabs({
+			ajaxOptions: {
+				error: function( xhr, status, index, anchor ) {
+					$( anchor.hash ).html(
+						"Failed to load tab contents" );
+				}
+			}
+		});
+	  });
+    </script>
+    <title>{{ title }}</title>
+    {# Enable profiling #}
+    {{ profiler.get_profiler_includes() }}
+    {% endblock %}
+  </head>
+  <body>
+    <div id="header">
+        <table align="right">
+            <tr><td><a class="loginurl" href="{{login_url}}">{{login_linktext}}</a></td></tr>
+        </table>
+    </div>
+    <div id="leftmenu">
+        <a href="."><img src="images/EnFL.png" width="200"></img></a>
+        <div id="accordion">
+        {% for name, submenu in main_menu.items() %}
+            <h3>{{ name }}</a></h3>
+            <ul>
+                {% for item, url in submenu.items() %}
+                <li><a href={{ url }}>{{ item }}</a></li>
+                {% endfor %}
+            </ul>
+        {% endfor %}
+        </div>     
+    </div>
+    <div id="content"><div id="tabs" style="overflow:hidden;">
+	<ul>
+        {% block tabnames %}
+		{% if tabs is defined %}
+            {% for tab in tabs.values() %}
+                <li><a href="{{ tab.url }}">{{ tab.name }}</a></li>
+            {% endfor %}
+        {% else %}
+            <li><a href="#tabs-1">{{ title }}</a></li>
+        {% endif %}
+        {% endblock %}
+	</ul>
+    {% block tabs %}
+	<div id="tabs-1" class="fftab">
+        {% block defaulttab %}
+        {% endblock %}
+	</div>
+    {% endblock %}
+    </div></div>
+    <div id="footer">
+    {% block footer %}
+      <font color=grey size=small>Copyright 2014 by Jon Culver</font>
+    {% endblock %}
+    </div>
+  </body>
+</html>
+{% endautoescape %}

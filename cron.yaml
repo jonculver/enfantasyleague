@@ -1,0 +1,14 @@
+cron:
+- description: update scores
+  url: /admintools.json?action=update
+  schedule: every 14 hours from 09:00 to 23:00
+  timezone: Europe/London
+- description: weekly update
+  url: /admintools.json?action=weeklyUpdate
+  schedule: every friday 18:55
+  timezone: Europe/London
+- description: refresh cache
+  url: /admintools.json?action=refreshCache
+  schedule: every 14 hours from 09:05 to 23:05
+  timezone: Europe/London
+
