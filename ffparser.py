@@ -6,7 +6,7 @@
 #
 
 import ffdb
-import urllib, sgmllib, re
+import urllib2, sgmllib, re
 import logging
 from datetime import date
 from datetime import datetime
@@ -163,8 +163,15 @@ class FFParser(object):
                                       self.players, self.clubs)
 
         logging.info("Requesting data for URL '{}'".format(player_list))
+
+        user_agent = 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) ' \
+                     'AppleWebKit/537.36 (KHTML, like Gecko) ' \
+                     'Chrome/64.0.3282.167 Safari/537.36'
+        headers = {'User-Agent': user_agent}
+        req = urllib2.Request(player_list, headers=headers)
+
         try:
-            f = urllib.urlopen(player_list)
+            f = urllib.urlopen(req)
             logging.info("Parsing HTML")
             parser.parse(f.read())
             f.close()
