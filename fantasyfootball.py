@@ -15,9 +15,7 @@ import json
 import re
 import ff, ffdb
 import tools
-import gae_mini_profiler.profiler
 import time
-from gae_mini_profiler.templatetags import TemplateTags
 from ffparser import ParseError
 
 
@@ -102,10 +100,7 @@ class FFPage(webapp2.RequestHandler):
             self.set_value("login_linktext", self.login_linktext)
             self.set_value("admin", self.admin)
 
-            # Make profiling work.
-            self.set_value("profiler", TemplateTags())
-
-            # Fill in the league object required by all pages. Read values 
+            # Fill in the league object required by all pages. Read values
             # from the DB if not provided. Note that populating all teams from 
             # the datastore is very slow (e.g. >10s)
             self.year = year
@@ -1027,8 +1022,6 @@ application = webapp2.WSGIApplication([
     ('/removeplayer.json', RemovePlayer),
     ('/league.json', GetLeague),
 ], debug=True)
-
-application = gae_mini_profiler.profiler.ProfilerWSGIMiddleware(application)
 
 def main():
     # Set the logging level in the main function
