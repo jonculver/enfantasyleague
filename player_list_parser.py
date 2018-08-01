@@ -203,10 +203,11 @@ class PlayerListParser(sgmllib.SGMLParser):
         """
         Parse a </tr> tag. Save the player details if any.
         """
-        logging.info("Parsed {}".format(self.curr_player))
         if self.curr_player.player_key != None:
+            logging.info("Parsed {}".format(self.curr_player))
             self.players[self.curr_player.player_key] = self.curr_player
         if self.curr_club.name != None and self.curr_club.name not in self.clubs:
+            logging.info("Parsed {}".format(self.self.curr_club.name))
             self.clubs[self.curr_club.name] = self.curr_club
                                                                       
     def start_td (self, attributes):
