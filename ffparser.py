@@ -77,7 +77,8 @@ class FFParser(object):
                 Whether or not to save the update
 
         """
-        # Read and parse the current list of players then convert them to database entries
+        # Read and parse the current list of players then convert them to database entries (This is not done by the
+        # parsers themselves to keep them agnostic of any AppEngine specific classes)
         parser = PlayerListParser()
         parsed_players = parser.get_players()
         for key, player in parsed_players.items():
@@ -94,7 +95,11 @@ class FFParser(object):
                 db_entry.set_total_score(self.week, player.total)
             self.players[key] = db_entry
 
-        self.clubs = parser.get_clubs()
+        parsed_clubs = parser.get_clubs()
+        for key, club in parsed_clubs.items():
+            self.clubs[key] = ffdb.FFDBClub(year = self.season.year,
+                                            abr = key,
+                                            url = club.url)
 
         # Query the datastore to find the existing entries for players
         filters = [ndb.AND(ffdb.FFDBPlayer.year==self.season.year)]
