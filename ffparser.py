@@ -80,9 +80,9 @@ class FFParser(object):
         # Read and parse the current list of players then convert them to database entries
         parser = PlayerListParser()
         parsed_players = parser.get_players()
-        for player in parsed_players:
+        for key, player in parsed_players.items():
             db_entry = ffdb.FFDBPlayer(year       = self.season.year,
-                                       player_key = player.player_key,
+                                       player_key = key,
                                        pos        = player.pos,
                                        club       = player.club,
                                        url        = player.url,
@@ -92,7 +92,7 @@ class FFParser(object):
                                        last_season = player.last_season)
             if player.total:
                 db_entry.set_total_score(self.week, player.total)
-            self.players[player.player_key] = db_entry
+            self.players[key] = db_entry
 
         self.clubs = parser.get_clubs()
 
