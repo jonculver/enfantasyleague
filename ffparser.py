@@ -91,6 +91,8 @@ class FFParser(object):
                                        reason     = player.reason,
                                        name       = player.name,
                                        last_season = player.last_season)
+            if db_entry.status = None:
+                db_entry.status = ffdb.FFDBPlayer.FIT
             if player.total:
                 db_entry.set_total_score(self.week, player.total)
             self.players[key] = db_entry
