@@ -38,7 +38,7 @@ def update_player_scores (season=None, log=None, pos=None):
         season = ffdb.FFDBSeason.load(year)
     try:
         parser = ffparser.FFParser(season)
-        result = parser.parse_player_list(pos, classic=False)
+        result = parser.parse_player_list()
     except Exception as e:
         printlog("Failed to parse player list: {}".format(str(e)), log)
         raise e
