@@ -207,7 +207,7 @@ class PlayerListParser(sgmllib.SGMLParser):
             logging.info("Parsed {}".format(self.curr_player))
             self.players[self.curr_player.player_key] = self.curr_player
         if self.curr_club.name != None and self.curr_club.name not in self.clubs:
-            logging.info("Parsed {}".format(self.self.curr_club.name))
+            logging.info("Parsed {}".format(self.curr_club.name))
             self.clubs[self.curr_club.name] = self.curr_club
                                                                       
     def start_td (self, attributes):
