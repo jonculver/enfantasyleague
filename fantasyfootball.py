@@ -16,8 +16,6 @@ import re
 import ff, ffdb
 import tools
 import time
-from ffparser import ParseError
-
 
 JINJA_ENVIRONMENT = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),
@@ -618,7 +616,7 @@ class ToolActions(FFPage):
                 try:
                     tools.update_player_scores(self.league.season, log, 
                                                pos=pos)
-                except ParseError as e:
+                except Exception as e:
                     result = "Failed to update scores for position {}: {}".format(
                                                            pos, str(e))
                 else:

@@ -28,7 +28,7 @@ def printlog (string, log=None):
 
 def update_player_scores (season=None, log=None, pos=None):
     """
-    Update scores for all players in the database. Raise ParseError on failure
+    Update scores for all players in the database.
      Argument: log - if specified then messages will be added to this array
                pos - if specified then only scores for this player will be 
                      updated
@@ -39,9 +39,9 @@ def update_player_scores (season=None, log=None, pos=None):
     try:
         parser = ffparser.FFParser(season)
         result = parser.parse_player_list(pos, classic=False)
-    except (IOError, ffparser.ParseError) as e:
+    except Exception as e:
         printlog("Failed to parse player list: {}".format(str(e)), log)
-        raise ffparser.ParseError(str(e))
+        raise e
     else:
         printlog(result, log)
 
