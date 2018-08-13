@@ -281,8 +281,9 @@ class PlayerListParser(sgmllib.SGMLParser):
             elif self.curr_col == 4:
                 # If we haven't already seen this club then create an
                 # entry for it in our dictionary
-                self.curr_club.name = data
-                self.curr_player.club = data
+                club_abr = data.strip()
+                self.curr_club.name = club_abr
+                self.curr_player.club = club_abr
             elif self.curr_col == 10:
                 # Store this value in the 'last season' field. If there is a
                 # further column then clear it again since it will be monthly
