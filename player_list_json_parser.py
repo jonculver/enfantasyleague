@@ -5,9 +5,7 @@
 # Classes for parsing player data from JSON
 #
 import re
-import sgmllib
 import logging
-from httplib import HTTPException
 import requests
 import json
 
@@ -123,6 +121,7 @@ class PlayerListParser():
 
         # Now post our credentials
         payload = {"_token": token,
+                   "email": "enfl@mail.com",
                    "password": "enfl2000",
                    "remember": "on"}
         session.post(login_url, data=payload)
