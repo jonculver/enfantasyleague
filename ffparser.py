@@ -8,7 +8,7 @@
 import ffdb
 import logging
 from google.appengine.ext import ndb
-from player_list_parser import PlayerListParser
+from player_list_json_parser import PlayerListParser
 from fixture_list_parser import FixtureListParser
 
 class FFParser(object):
