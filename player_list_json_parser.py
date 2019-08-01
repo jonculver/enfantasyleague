@@ -11,6 +11,13 @@ from httplib import HTTPException
 import requests
 import json
 
+# Glue to get requests to work from within appengine
+try:
+    from requests_toolbelt.adapters import appengine
+    appengine.monkeypatch()
+except ImportError:
+    pass
+
 from player_list_parser import ParseError, ParsedClub, ParsedPlayer
 
 ##############
@@ -116,7 +123,6 @@ class PlayerListParser():
 
         # Now post our credentials
         payload = {"_token": token,
-                   "email": "enfl@mail.com",
                    "password": "enfl2000",
                    "remember": "on"}
         session.post(login_url, data=payload)

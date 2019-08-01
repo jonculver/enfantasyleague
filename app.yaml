@@ -39,3 +39,7 @@ libraries:
   version: latest
 - name: matplotlib
   version: latest
+- name: requests
+  version: latest
+- name: requests-toolbelt
+  version: latest
