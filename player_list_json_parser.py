@@ -141,9 +141,15 @@ class PlayerListParser():
                                 "Referer": "https://www.fantasyleague.com/manage/more/players/1801",
                                 "X-CSRF-TOKEN": csrf_token})
         result = session.post(self.url)
+        if result.status_code != 200:
+            raise ParseError("Request to {} returned status {}".format(login_url, result.status_code))
 
         # Hopefully we have some data
-        data = self.byteify(json.loads(result.content))
+        try:
+            data = self.byteify(json.loads(result.content))
+        except Exception as e:
+            logger.error("Failed to decode JSON data from {}".format(result.content))
+            raise e
         if debug:
             print(data)
         logger.info("Parsing JSON")
