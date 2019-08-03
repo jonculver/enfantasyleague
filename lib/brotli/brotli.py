@@ -5,6 +5,9 @@
 
 """Functions to compress and decompress data using the Brotli library."""
 
+import os
+import sys
+sys.path.append(os.path.realpath(__file__))
 import _brotli
 
 
