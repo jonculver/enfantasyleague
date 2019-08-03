@@ -8,6 +8,7 @@ import re
 import logging
 import requests
 import json
+import brotli
 
 # Glue to get requests to work from within appengine
 try:
@@ -148,8 +149,12 @@ class PlayerListParser():
         try:
             data = self.byteify(json.loads(result.content))
         except Exception as e:
-            logger.error("Failed to decode JSON data from {}".format(result.content))
-            raise e
+            # GAE version of requests doesn't decompress Brotli-encoded data so try doing it manually
+            try:
+                data = self.byteify(json.loads(brotli.decompress(result.content)))
+            except Exception as e2:
+                logger.error("Failed to decompress or load JSON data from {}: {}".format(result.content, e2))
+                raise e
         if debug:
             print(data)
         logger.info("Parsing JSON")
