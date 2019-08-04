@@ -418,8 +418,8 @@ class FFDBPlayer(FFDBEntry):
     GK = "GK"
     FB = "FB"
     CB = "CB"
-    M  = "M"
-    S  = "S"
+    M  = "MF"
+    S  = "ST"
     
     # Possible player status values
     FIT        = "Fit"
