@@ -8,7 +8,6 @@ import re
 import logging
 import requests
 import json
-import brotli
 
 # Glue to get requests to work from within appengine
 try:
@@ -90,7 +89,9 @@ class PlayerListParser():
         elif isinstance(input, list):
             return [self.byteify(element) for element in input]
         elif isinstance(input, unicode):
-            return input.encode('utf-8')
+            output = input.encode('utf-8')
+            # Fix apostrophes
+            return output.replace("&#039;", "'")
         else:
             return input
         
@@ -138,7 +139,7 @@ class PlayerListParser():
         logger.info("Found CSRF token {}".format(csrf_token))
 
         session.headers.update({"Accept": "application/json, text/javascript, */*; q=0.01",
-                                "Accept-Encoding": "gzip, deflate, br",
+                                "Accept-Encoding": "gzip, deflate",
                                 "Referer": "https://www.fantasyleague.com/manage/more/players/1801",
                                 "X-CSRF-TOKEN": csrf_token})
         result = session.post(self.url)
@@ -149,12 +150,10 @@ class PlayerListParser():
         try:
             data = self.byteify(json.loads(result.content))
         except Exception as e:
-            # GAE version of requests doesn't decompress Brotli-encoded data so try doing it manually
-            try:
-                data = self.byteify(json.loads(brotli.decompress(result.content)))
-            except Exception as e2:
-                logger.error("Failed to decompress or load JSON data from {}: {}".format(result.content, e2))
-                raise e
+            logger.error("Failed to decompress or load JSON data with encoding {} from {}: {}".format(result.encoding,
+                                                                                                      result.content,
+                                                                                                      e))
+            raise e
         if debug:
             print(data)
         logger.info("Parsing JSON")
