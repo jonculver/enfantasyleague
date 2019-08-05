@@ -427,7 +427,7 @@ class FFDBPlayer(FFDBEntry):
     SUSPENDED  = "Suspended"
     DOUBTFUL   = "Doubtful"
     INELIGABLE = "Ineligable"
-    LFT        = "LateFitnessTest"
+    LFT        = "Late Fitness Test"
 
     year        = ndb.StringProperty(required=True)
     player_key  = ndb.StringProperty(required=True)
