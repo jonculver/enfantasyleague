@@ -91,7 +91,7 @@ class PlayerListParser():
         elif isinstance(input, unicode):
             output = input.encode('utf-8')
             # Fix apostrophes and soft hyphens
-            return output.replace("&#039;", "'").replace('\xad', '')
+            return output.replace("&#039;", "'").replace('\xad', '').replace('\xc2', '')
         else:
             return input
         
