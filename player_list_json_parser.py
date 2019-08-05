@@ -52,7 +52,7 @@ class PlayerListParser():
                 name = last_name
             player.name = name
             player.status = p['player_status']
-            player.total = 0# int(p['total'])
+            player.total = 0  # int(p['total'])
             player.reason = None
             player.last_season = int(p['total'])
             player.player_key = p['id']
@@ -90,8 +90,8 @@ class PlayerListParser():
             return [self.byteify(element) for element in input]
         elif isinstance(input, unicode):
             output = input.encode('utf-8')
-            # Fix apostrophes
-            return output.replace("&#039;", "'")
+            # Fix apostrophes and soft hyphens
+            return output.replace("&#039;", "'").replace('\xad', '')
         else:
             return input
         
