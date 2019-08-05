@@ -52,7 +52,7 @@ class PlayerListParser():
                 name = last_name
             player.name = name
             player.status = p['player_status']
-            player.total = int(p['total'])
+            player.total = 0# int(p['total'])
             player.reason = None
             player.last_season = int(p['total'])
             player.player_key = p['id']
