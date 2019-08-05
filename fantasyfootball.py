@@ -261,11 +261,11 @@ class PlayerList(FFPage):
     """
     def get (self):
         super(PlayerList, self).get(0)
-        self.add_tab(Tab("Goalkeepers", "GK", "./playerlisttab.html?pos=GK"))
-        self.add_tab(Tab("Fullbacks", "FB", "./playerlisttab.html?pos=FB"))
-        self.add_tab(Tab("Centrebacks", "CB", "./playerlisttab.html?pos=CB"))
-        self.add_tab(Tab("Midfielders", "M", "./playerlisttab.html?pos=M"))
-        self.add_tab(Tab("Strikers", "S", "./playerlisttab.html?pos=S"))
+        self.add_tab(Tab("Goalkeepers", ffdb.FFDBPlayer.GK, "./playerlisttab.html?pos={}".format(ffdb.FFDBPlayer.GK)))
+        self.add_tab(Tab("Fullbacks", ffdb.FFDBPlayer.FB, "./playerlisttab.html?pos={}".format(ffdb.FFDBPlayer.FB)))
+        self.add_tab(Tab("Centrebacks", ffdb.FFDBPlayer.CB, "./playerlisttab.html?pos={}".format(ffdb.FFDBPlayer.CB)))
+        self.add_tab(Tab("Midfielders", ffdb.FFDBPlayer.M, "./playerlisttab.html?pos={}".format(ffdb.FFDBPlayer.M)))
+        self.add_tab(Tab("Strikers", ffdb.FFDBPlayer.S, "./playerlisttab.html?pos={}".format(ffdb.FFDBPlayer.S)))
         self.add_tab(Tab("All", "all", "./playerlisttab.html"))
         self.set_title("Player List")
         self.render("base.html")
