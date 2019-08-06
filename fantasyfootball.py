@@ -847,8 +847,9 @@ class FindUnowned(FFPage):
         playerlist = ff.FFPlayerList(self.year, unowned=True)
 
         # Add the player to the appropriate position array
-        unowned_lists = OrderedDict([('GK', []), ('FB', []), ('CB', []),
-                                     ('M', []), ('S', [])])
+        unowned_lists = OrderedDict([(ffdb.FFDBPlayer.GK, []), (ffdb.FFDBPlayer.FB, []),
+                                     (ffdb.FFDBPlayer.CB, []), (ffdb.FFDBPlayer.M, []),
+                                     (ffdb.FFDBPlayer.GK, [])])
 
         for p in playerlist:
             unowned_lists[p.pos].append(p)
