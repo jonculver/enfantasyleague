@@ -105,7 +105,8 @@ class PlayerListParser():
         self.clubs       = {}
 
         login_url = "https://www.fantasyleague.com/login"
-        self.url = "https://www.fantasyleague.com/manage/more/players/1801"
+        self.url = "https://www.fantasyleague.com/manage/matches/5739/index"
+        self.url2 = "https://www.fantasyleague.com/manage/more/players/5739"
 
         # Create a session, since we'll need to log in, and request the login page
         session = requests.session()
@@ -123,8 +124,8 @@ class PlayerListParser():
 
         # Now post our credentials
         payload = {"_token": token,
-                   "email": "enfl@mail.com",
-                   "password": "enfl2000",
+                   "email": "jpmculver@gmail.com",
+                   "password": "enfl2021",
                    "remember": "on"}
         session.post(login_url, data=payload)
 
@@ -140,9 +141,9 @@ class PlayerListParser():
 
         session.headers.update({"Accept": "application/json, text/javascript, */*; q=0.01",
                                 "Accept-Encoding": "gzip, deflate",
-                                "Referer": "https://www.fantasyleague.com/manage/more/players/1801",
+                                "Referer": self.url,
                                 "X-CSRF-TOKEN": csrf_token})
-        result = session.post(self.url)
+        result = session.post(self.url2)
         if result.status_code != 200:
             raise ParseError("Request to {} returned status {}".format(login_url, result.status_code))
 
