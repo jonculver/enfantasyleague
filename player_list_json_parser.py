@@ -125,7 +125,7 @@ class PlayerListParser():
         # Now post our credentials
         payload = {"_token": token,
                    "email": "jpmculver@gmail.com",
-                   "password": "enfl2021",
+                   "password": "enfl2022",
                    "remember": "on"}
         session.post(login_url, data=payload)
 
