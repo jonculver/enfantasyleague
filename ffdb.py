@@ -422,12 +422,13 @@ class FFDBPlayer(FFDBEntry):
     S  = "ST"
     
     # Possible player status values
-    FIT        = "Fit"
-    INJURED    = "Injured"
-    SUSPENDED  = "Suspended"
-    DOUBTFUL   = "Doubtful"
-    INELIGABLE = "Ineligable"
-    LFT        = "Late Fitness Test"
+    FIT           = "Fit"
+    INJURED       = "Injured"
+    SUSPENDED     = "Suspended"
+    DOUBTFUL      = "Doubtful"
+    INELIGABLE    = "Ineligable"
+    LFT           = "Late Fitness Test"
+    INTERNATIONAL = "International"
 
     year        = ndb.StringProperty(required=True)
     player_key  = ndb.StringProperty(required=True)
@@ -435,7 +436,8 @@ class FFDBPlayer(FFDBEntry):
     pos         = ndb.StringProperty(choices=[GK, FB, CB, M, S], required=True)
     club        = ndb.StringProperty(required=True)
     status      = ndb.StringProperty(choices=[FIT, INJURED, SUSPENDED,
-                                              DOUBTFUL, INELIGABLE, LFT])
+                                              DOUBTFUL, INELIGABLE, LFT,
+                                              INTERNATIONAL])
     reason      = ndb.StringProperty(indexed=False)
     last_season = ndb.IntegerProperty()
     url         = ndb.StringProperty()
