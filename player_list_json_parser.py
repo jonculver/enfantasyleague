@@ -52,9 +52,9 @@ class PlayerListParser():
                 name = last_name
             player.name = name
             player.status = p['player_status']
-            player.total = int(p['total'])
+            player.total = 0 #int(p['total'])
             player.reason = None
-            player.last_season = 0
+            player.last_season = int(p['total']) # 0
             player.player_key = p['id']
             self.players[player.player_key] = player
             logging.info("Parsed {}".format(player))
@@ -105,8 +105,8 @@ class PlayerListParser():
         self.clubs       = {}
 
         login_url = "https://www.fantasyleague.com/login"
-        self.url = "https://www.fantasyleague.com/manage/matches/5739/index"
-        self.url2 = "https://www.fantasyleague.com/manage/more/players/5739"
+        self.url = "https://www.fantasyleague.com/manage/matches/17666/index"
+        self.url2 = "https://www.fantasyleague.com/manage/more/players/17666"
 
         # Create a session, since we'll need to log in, and request the login page
         session = requests.session()
