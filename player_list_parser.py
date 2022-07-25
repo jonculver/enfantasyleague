@@ -290,8 +290,9 @@ class PlayerListParser(sgmllib.SGMLParser):
                 # points instead
                 self.curr_player.last_season = int(data)
             elif self.curr_col == 11:
-                self.curr_player.total = int(data)
-                self.curr_player.last_season = None
+                # @@@ Swap these round after scores are reset
+                self.curr_player.total = None
+                self.curr_player.last_season = int(data)
 
 
 if __name__ == '__main__':
