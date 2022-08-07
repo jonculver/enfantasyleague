@@ -52,9 +52,9 @@ class PlayerListParser():
                 name = last_name
             player.name = name
             player.status = p['player_status']
-            player.total = 0 #int(p['total'])
+            player.total = int(p['total'])
             player.reason = None
-            player.last_season = int(p['total']) # 0
+            player.last_season = 0
             player.player_key = p['id']
             self.players[player.player_key] = player
             logging.info("Parsed {}".format(player))
